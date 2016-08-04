@@ -6,9 +6,59 @@ public class SerializationWriter {
 	public static final short VERSION =  0x0100; // big endian
 	// public static final byte flags = 0;
 
+	
 	public static int writeBytes(byte[] dest, int pointer, byte[] src) {
 		for (int i = 0; i < src.length; i++ )
 			dest[pointer++] = src[i];
+		return pointer;
+	}
+
+	public static int writeBytes(byte[] dest, int pointer, char[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
+		return pointer;
+	}
+	
+	public static int writeBytes(byte[] dest, int pointer, short[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
+		return pointer;
+	}
+	
+	public static int writeBytes(byte[] dest, int pointer, int[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
+		return pointer;
+	}
+	
+	public static int writeBytes(byte[] dest, int pointer, long[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
+		return pointer;
+	}
+	
+	public static int writeBytes(byte[] dest, int pointer, float[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
+		return pointer;
+	}
+	
+	public static int writeBytes(byte[] dest, int pointer, double[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
+		return pointer;
+	}
+	
+	public static int writeBytes(byte[] dest, int pointer, boolean[] src) {
+		assert(dest.length >= pointer + src.length);
+		for (int i = 0; i < src.length; i++ )
+			pointer = writeBytes(dest, pointer, src[i]);
 		return pointer;
 	}
 	
@@ -35,7 +85,7 @@ public class SerializationWriter {
 	}
 	
 	public static int writeBytes(byte[] dest, int pointer, int value) {
-		assert(dest.length >= pointer + Type.getSize(Type.INT));
+		assert(dest.length >= pointer + Type.getSize(Type.INTEGER));
 		dest[pointer++] = (byte) ((value >> 24) & 0xff);
 		dest[pointer++] = (byte) ((value >> 16) & 0xff);
 		dest[pointer++] = (byte) ((value >> 8) & 0xff);
